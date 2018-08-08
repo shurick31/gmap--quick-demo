@@ -23,7 +23,7 @@ class Map extends Component {
         longitude:this.getRandomInRange(lngFrom, lngTo, 6),
         icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
 
-        
+
       });
       coordsSuppliers.push({id:i, latitude:this.getRandomInRange(latFrom, latTo, 6), longitude:this.getRandomInRange(lngFrom, lngTo, 6), icon:'http://maps.google.com/mapfiles/ms/icons/green-dot.png'});
     }
@@ -46,7 +46,7 @@ class Map extends Component {
   render(){
     const GMap = withGoogleMap(props => (
      <GoogleMap
-       defaultCenter = { { lat: 59.425997, lng: 24.774326 } }
+       defaultCenter = { { lat: 59.427564,  lng: 24.774038} }
        defaultZoom = { 16 }
      >
      <MarkerClusterer
