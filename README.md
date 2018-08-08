@@ -14,3 +14,5 @@ $ npm run start
 
 Don't forget add your own API key in index.html (replace YOUR_API_KEY);
 Markers generated randomly for customers and suppliers
+
+Demo: https://shurick31.github.io/googlemap_demo.html

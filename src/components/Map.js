@@ -6,6 +6,7 @@ const lngFrom = 24.771210;
 const lngTo = 24.776715;
 const latFrom = 59.423470;
 const latTo = 59.435867;
+
 // 59.423470, 24.771210
 // 59.435867, 24.776715
 class Map extends Component {
@@ -16,7 +17,14 @@ class Map extends Component {
     let coordsCustomers = [];
     let coordsSuppliers = [];
     for (let i=0;i<100;i++) {
-      coordsCustomers.push({id:i, latitude:this.getRandomInRange(latFrom, latTo, 6), longitude:this.getRandomInRange(lngFrom, lngTo, 6), icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'});
+      coordsCustomers.push({
+        id:i,
+        latitude:this.getRandomInRange(latFrom, latTo, 6),
+        longitude:this.getRandomInRange(lngFrom, lngTo, 6),
+        icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
+
+        
+      });
       coordsSuppliers.push({id:i, latitude:this.getRandomInRange(latFrom, latTo, 6), longitude:this.getRandomInRange(lngFrom, lngTo, 6), icon:'http://maps.google.com/mapfiles/ms/icons/green-dot.png'});
     }
 
