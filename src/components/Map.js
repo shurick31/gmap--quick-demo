@@ -16,8 +16,8 @@ class Map extends Component {
     let coordsCustomers = [];
     let coordsSuppliers = [];
     for (let i=0;i<100;i++) {
-      coordsCustomers.push({id:i, latitude:this.getRandomInRange(latFrom, latTo, 6), longitude:this.getRandomInRange(lngFrom, lngTo, 6)});
-      coordsSuppliers.push({id:i, latitude:this.getRandomInRange(latFrom, latTo, 6), longitude:this.getRandomInRange(lngFrom, lngTo, 6)});
+      coordsCustomers.push({id:i, latitude:this.getRandomInRange(latFrom, latTo, 6), longitude:this.getRandomInRange(lngFrom, lngTo, 6), icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'});
+      coordsSuppliers.push({id:i, latitude:this.getRandomInRange(latFrom, latTo, 6), longitude:this.getRandomInRange(lngFrom, lngTo, 6), icon:'http://maps.google.com/mapfiles/ms/icons/green-dot.png'});
     }
 
     this.setState({markers: coordsCustomers, coordsCustomers, coordsSuppliers});
@@ -39,7 +39,7 @@ class Map extends Component {
     const GMap = withGoogleMap(props => (
      <GoogleMap
        defaultCenter = { { lat: 59.425997, lng: 24.774326 } }
-       defaultZoom = { 18 }
+       defaultZoom = { 16 }
      >
      <MarkerClusterer
        onClick={props.onMarkerClustererClick}
@@ -50,6 +50,7 @@ class Map extends Component {
      {this.state.markers.map(marker => (
         <Marker
           key={marker.id}
+          icon={marker.icon}
           position={{ lat: marker.latitude, lng: marker.longitude }}
         />
       ))}
@@ -61,15 +62,15 @@ class Map extends Component {
       <div>
         <Row>
           <Col s={6}>
-            <Button style={{ fontSize: 10 }} onClick={()=>this.changeCluster('customer')}>I am a customer</Button>
+            <Button style={{ fontSize: 10, backgroundColor: 'rgb(103,142,233)' }} onClick={()=>this.changeCluster('customer')}>customer</Button>
           </Col>
           <Col s={6}>
-            <Button style={{ fontSize: 10 }} onClick={()=>this.changeCluster('supplier')}>I am a supplier</Button>
+            <Button style={{ fontSize: 10, backgroundColor:'rgb(36,228,86)' }} onClick={()=>this.changeCluster('supplier')}>supplier</Button>
           </Col>
 
         </Row>
       <GMap
-        containerElement={ <div style={{ height: `450px`}} /> }
+        containerElement={ <div style={{ height: `400px`}} /> }
         mapElement={ <div style={{ height: `100%` }} /> }
       />
     </div>
