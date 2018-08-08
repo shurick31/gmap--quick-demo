@@ -62,7 +62,7 @@ class Map extends Component {
           position={{ lat: marker.latitude, lng: marker.longitude }}
         />
       ))}
-      <Marker position={{ lat: 59.42598, lng: 24.77434 }} />
+      
       </MarkerClusterer>
 </GoogleMap>
     ));
