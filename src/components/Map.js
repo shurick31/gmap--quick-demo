@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
+import { Row, Col, Button } from 'react-materialize';
 const { MarkerClusterer } = require("react-google-maps/lib/components/addons/MarkerClusterer");
 const lngFrom = 24.771210;
 const lngTo = 24.776715;
@@ -12,11 +13,22 @@ class Map extends Component {
 
 
   componentDidMount() {
-    let coords = [];
+    let coordsCustomers = [];
+    let coordsSuppliers = [];
     for (let i=0;i<100;i++) {
-      coords.push({id:i, latitude:this.getRandomInRange(latFrom, latTo, 6), longitude:this.getRandomInRange(lngFrom, lngTo, 6)});
+      coordsCustomers.push({id:i, latitude:this.getRandomInRange(latFrom, latTo, 6), longitude:this.getRandomInRange(lngFrom, lngTo, 6)});
+      coordsSuppliers.push({id:i, latitude:this.getRandomInRange(latFrom, latTo, 6), longitude:this.getRandomInRange(lngFrom, lngTo, 6)});
     }
-    this.setState({markers: coords});
+
+    this.setState({markers: coordsCustomers, coordsCustomers, coordsSuppliers});
+  }
+
+  changeCluster(st) {
+    if(st === 'customer') {
+      this.setState({markers: this.state.coordsCustomers});
+    } else {
+      this.setState({markers: this.state.coordsSuppliers});
+    }
   }
 
   getRandomInRange(from, to, fixed) {
@@ -47,6 +59,15 @@ class Map extends Component {
     ));
     return(
       <div>
+        <Row>
+          <Col s={6}>
+            <Button style={{ fontSize: 10 }} onClick={()=>this.changeCluster('customer')}>I am a customer</Button>
+          </Col>
+          <Col s={6}>
+            <Button style={{ fontSize: 10 }} onClick={()=>this.changeCluster('supplier')}>I am a supplier</Button>
+          </Col>
+
+        </Row>
       <GMap
         containerElement={ <div style={{ height: `500px`}} /> }
         mapElement={ <div style={{ height: `100%` }} /> }
